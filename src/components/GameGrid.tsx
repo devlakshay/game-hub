@@ -13,7 +13,7 @@ const GameGrid = () => {
       {loading && (
         <SimpleGrid
           columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-          spacing={10}
+          spacing={3}
           padding="10px"
         >
           {[1, 2, 3, 4, 5, 6].map(() => (
