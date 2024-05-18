@@ -2,28 +2,26 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-export interface Platform {
+// export interface Platform {
+//     id: number;
+//     name: string;
+//     slug: string;
+// }
+
+export interface Genre {
     id: number;
     name: string;
     slug: string;
 }
 
-export interface Game {
-    id: number;
-    name: string;
-    background_image: string;
-    parent_platforms: { platform: Platform }[];
-    metacritic: number;
-}
-
-interface FetchGameResponse {
+interface FetchGenreResponse {
     count: number;
-    results: Game[];
+    results: Genre[];
 }
 
-const useGames = () => {
+const useGenres = () => {
 
-    const [games, setGames] = useState<Game[]>([]);
+    const [genres, setGenres] = useState<Genre[]>([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -32,9 +30,9 @@ const useGames = () => {
 
         setLoading(true);
         apiClient
-        .get<FetchGameResponse>("/games", { signal: controller.signal })
+        .get<FetchGenreResponse>("/genres", { signal: controller.signal })
         .then((res) => {
-            setGames(res.data.results);
+            setGenres(res.data.results);
             setLoading(false);
         })
         .catch((err) => {
@@ -46,7 +44,7 @@ const useGames = () => {
         return () => controller.abort();
     }, []);
 
-    return { games, error, loading };
+    return { genres, error, loading };
 }
 
-export default useGames;
+export default useGenres;
