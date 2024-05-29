@@ -8,29 +8,25 @@ interface Props {
 
 const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
   const sortOrders = [
-    { value: "", label: "Relevence" },
-    { value: "-added", label: "Date Added" },
+    { value: "", label: "Relevance" },
+    { value: "-added", label: "Date added" },
     { value: "name", label: "Name" },
-    { value: "-released", label: "Release Date" },
+    { value: "-released", label: "Release date" },
     { value: "-metacritic", label: "Popularity" },
-    { value: "-rating", label: "Average Rating" },
+    { value: "-rating", label: "Average rating" },
   ];
+
+  const currentSortOrder = sortOrders.find(order => order.value === sortOrder);
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order By :{" "}
-        {sortOrders.find((order) => order.value === sortOrder)?.label ||
-          "Relevence"}
+        Order by: {currentSortOrder?.label || 'Relevance'}
       </MenuButton>
       <MenuList>
-        {sortOrders.map((sortOrder) => (
-          <MenuItem
-            onClick={() => onSelectSortOrder(sortOrder.value)}
-            value={sortOrder.value}
-            key={sortOrder.value}
-          >
-            {sortOrder.label}
+        {sortOrders.map((order) => (
+          <MenuItem onClick={() => onSelectSortOrder(order.value)} key={order.value} value={order.value}>
+            {order.label}
           </MenuItem>
         ))}
       </MenuList>
