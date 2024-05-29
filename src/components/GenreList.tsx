@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -17,6 +18,9 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
   const { genres, error, loading } = useGenres();
   return (
     <>
+      <Heading marginBottom={3} fontSize={"2xl"}>
+        Genres
+      </Heading>
       <List>
         {error && null}
         {loading && <Spinner />}
@@ -27,6 +31,7 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
                 src={genre.image_background}
                 boxSize="32px"
                 borderRadius={8}
+                objectFit={"cover"}
               />
               <Button
                 onClick={() => onSelectedGenre(genre)}
