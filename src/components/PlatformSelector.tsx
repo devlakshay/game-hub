@@ -5,11 +5,10 @@ import useGameQueryStore from "../store/useGameQueryStore";
 
 const PlatformSelector = () => {
   const { data, error } = usePlatforms();
-  const { gameQuery, setPlatformID } = useGameQueryStore();
+  const platformID = useGameQueryStore((s) => s.gameQuery.platformID);
+  const setPlatformID = useGameQueryStore((s) => s.setPlatformID);
 
-  const platformName = data?.results.find(
-    (p) => p.id === gameQuery.platformID
-  )?.name;
+  const platformName = data?.results.find((p) => p.id === platformID)?.name;
 
   if (error) return null;
 
