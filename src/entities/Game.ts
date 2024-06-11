@@ -13,4 +13,5 @@ export interface Game {
   metacritic: number;
   rating_top: number;
   description_raw: string;
+  game_pk: string;
 }

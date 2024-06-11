@@ -6,6 +6,7 @@ import GameAttribute from "../components/GameAttribute";
 import CriticScore from "../components/CriticScore";
 import useTrailer from "../hooks/useTrailer";
 import GameTrailer from "../components/GameTrailer";
+import GameScreenshots from "../components/GameScreenshots";
 
 const GameDetailPage = () => {
   const { slug } = useParams();
@@ -38,6 +39,7 @@ const GameDetailPage = () => {
         </GameAttribute>
       </SimpleGrid>
       <GameTrailer slug={game.slug} />
+      <GameScreenshots id={game.id} />
     </>
   );
 };
